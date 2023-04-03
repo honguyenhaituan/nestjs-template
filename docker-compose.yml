@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  chat:
+    image: node:18-alpine
+    container_name: zps-chat
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - '5000:5000'
+    restart: on-failure
+    command: npm run start chat
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://zps-chat:5000/health/live']
+      interval: 20s
+      timeout: 2s
+      retries: 6
+    networks:
+      - zps_network
+
+  socketer:
+    image: node:18-alpine
+    container_name: zps-socketer
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - '5001' # HTTP port
+      - '5101:5101' # Socket port
+    restart: on-failure
+    command: npm run start socketer
+    networks:
+      - zps_network
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://zps-socketer:5001/health/live']
+      interval: 20s
+      timeout: 2s
+      retries: 6
+
+networks:
+  zps_network:
+    external: true

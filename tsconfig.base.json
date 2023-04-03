@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@portal-chat/core": ["libs/core/src/index.ts"],
+      "@portal-chat/database": ["libs/database/src/index.ts"],
+      "@portal-chat/microservice": ["libs/microservice/src/index.ts"],
+      "@portal-chat/socket": ["libs/socket/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

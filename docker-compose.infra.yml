@@ -1,0 +1,15 @@
+version: '3.6'
+services:
+  rove-redis:
+    image: 'redis:alpine'
+    container_name: zps-redis
+    restart: unless-stopped
+    command: 'redis-server --requirepass ${REDIS_PWD}'
+    ports:
+      - '${REDIS_PORT}:6379'
+    networks:
+      - zps_network
+
+networks:
+  zps_network:
+    external: true

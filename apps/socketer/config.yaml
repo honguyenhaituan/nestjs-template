@@ -1,0 +1,4 @@
+app:
+  httpPort: 5001
+  socketPort: 5101
+  env: local

@@ -1,0 +1,36 @@
+app:
+  httpPort: 5001
+  socketPort: 5101
+  env: local
+
+log:
+  enableConsole: true
+  consoleJSONFormat: false
+  consoleLevel: debug
+
+grpcInterceptor:
+  bytePayloadLimit: 1000
+  infoSampleRate: 1
+  errorSampleRate: 1
+
+httpInterceptor:
+  bytePayloadLimit: 1000
+  infoSampleRate: 1
+  errorSampleRate: 1
+
+redis:
+  db: 0
+  host: localhost
+  port: 6379
+  password: password
+  connectTimeout: 5000
+  enableReadyCheck: true
+  showFriendlyErrorStack: false
+
+mongo:
+  uri: 'mongodb://localhost:27017,localhost:27018,localhost:27019/rove?replicaSet=rs0&writeConcern=majority'
+  debug: true
+
+gracefullyShutdown:
+  enable: false
+  timeoutMs: 1000
